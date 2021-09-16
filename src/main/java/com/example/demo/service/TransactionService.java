@@ -65,7 +65,7 @@ public class TransactionService {
         else{
             customer = new Customer(id, "Customer" + "_" + id, reward);
         }
-        Transaction transaction = new Transaction(id, amount, reward, new Timestamp(System.currentTimeMillis()));
+        Transaction transaction = new Transaction(customer, amount, reward, new Timestamp(System.currentTimeMillis()));
         customerRepository.save(customer);
         return transactionRepository.save(transaction);
     }

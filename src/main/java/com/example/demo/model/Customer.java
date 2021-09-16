@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,8 +18,10 @@ public class Customer {
     @Column(name = "reward_points")
     private int points;
 
-    @OneToMany
-    @JoinColumn(name = "cid", foreignKey = @ForeignKey(name = "customerId_FK"))
+//    @OneToMany
+//    @JoinColumn(name = "cid", foreignKey = @ForeignKey(name = "customerId_FK"))
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
     private List<Transaction> transactions;
 
     public Customer(int id, String name, int points){

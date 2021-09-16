@@ -13,8 +13,11 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "transaction_id")
     private int id;
-    @Column(name = "customer_id")
-    private int customer_id;
+//    @Column(name = "cid")
+//    private int cid;
+    @ManyToOne
+    @JoinColumn(name="cid")
+    private Customer customer;
     @Column(name = "amount")
     private double amount;
     @Column(name = "reward")
@@ -22,8 +25,8 @@ public class Transaction {
     @Column(name = "date")
     private Timestamp date;
 
-    public Transaction(int customer_id, double amount, int reward, Timestamp date){
-        this.customer_id = customer_id;
+    public Transaction(Customer customer, double amount, int reward, Timestamp date){
+        this.customer = customer;
         this.amount = amount;
         this.reward = reward;
         this.date = date;
